@@ -38,3 +38,42 @@
   font-size: 0.875rem;
   font-weight: bold;
 }
+
+.taskList .headerTaskList {
+  display: flex;
+  align-item: center;
+  justify-content: space-around;
+
+  margin-top: 4rem;
+
+  padding: 0 2rem;
+}
+
+.taskList .headerTaskList .createdTask,
+.taskList .headerTaskList .doneTask {
+  display: flex;
+  align-items: center;
+
+  gap: 0.5rem;
+}
+
+.taskList .headerTaskList .createdTask p {
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: var(--blue-100);
+}
+
+.taskList .headerTaskList .createdTask span,
+.taskList .headerTaskList .doneTask span {
+  background-color: var(--gray-400);
+  padding: 2px 8px;
+  border-radius: 999px;
+
+  font-size: 0.75rem;
+}
+
+.taskList .headerTaskList .doneTask p {
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: var(--purple-100);
+}
