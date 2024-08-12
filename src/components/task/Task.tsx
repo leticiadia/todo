@@ -1,15 +1,9 @@
-import { PlusCircle } from "@phosphor-icons/react";
+import { CheckCircle, Circle, PlusCircle, Trash } from "@phosphor-icons/react";
 import { ChangeEvent, FormEvent, useState } from "react";
 import styles from "./Task.module.css";
 
-interface TasksProps {
-  id: number;
-  title: string;
-  completed: boolean;
-}
-
 export function Task(): any {
-  const [tasks, setTasks] = useState(["Nova Task"]);
+  const [tasks, setTasks] = useState([]);
   const [newTasksText, setNewTasksText] = useState("");
 
   function handleCreateNewTask(event: FormEvent) {
@@ -20,11 +14,11 @@ export function Task(): any {
         { id: crypto.randomUUID(), content: newTasksText, completed: false },
       ];
     });
+
+    setNewTasksText("");
   }
 
-  console.log(tasks);
-
-  function handlNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
+  function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
     setNewTasksText(event.target.value);
   }
 
@@ -34,7 +28,7 @@ export function Task(): any {
         <input
           type="text"
           value={newTasksText}
-          onChange={handlNewTaskChange}
+          onChange={handleNewTaskChange}
           placeholder="Adicione uma nova tarefa"
         />
 
@@ -57,6 +51,27 @@ export function Task(): any {
             <p>Concluídas</p>
             <span>0</span>
           </div>
+        </div>
+
+        <div className={styles.contentTaskList}>
+          <ul>
+            {tasks.map((task) => {
+              return (
+                <li key={task.id} className={styles.taskList}>
+                  <button className={styles.circleIcon}>
+                    <Circle size={20} weight="bold" />
+                    <CheckCircle size={20} weight="fill" />
+                  </button>
+
+                  <p>{task.content}</p>
+
+                  <button className={styles.trashIcon} title="Deletar task">
+                    <Trash size={18} />
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
     </div>
