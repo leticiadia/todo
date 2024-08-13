@@ -37,6 +37,8 @@
 
   font-size: 0.875rem;
   font-weight: bold;
+
+  cursor: pointer;
 }
 
 .taskList .headerTaskList {
@@ -46,7 +48,7 @@
 
   margin-top: 4rem;
 
-  padding: 0 2rem;
+  padding: 0 5rem;
 }
 
 .taskList .headerTaskList .createdTask,
@@ -70,10 +72,67 @@
   border-radius: 999px;
 
   font-size: 0.75rem;
+  color: var(--white-color);
+  font-weight: bold;
 }
 
 .taskList .headerTaskList .doneTask p {
   font-size: 0.875rem;
   font-weight: bold;
   color: var(--purple-100);
+}
+
+.taskList .contentTaskList ul {
+  margin-top: 1.5rem;
+}
+
+.taskList .contentTaskList ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+
+  width: 736px;
+  height: 72px;
+  padding: 1rem;
+  margin: 0 auto;
+
+  background-color: var(--gray-400);
+  border-radius: 0.5rem;
+
+  margin-bottom: 0.75rem;
+}
+
+.taskList .contentTaskList ul li p {
+  color: var(--white-color);
+  width: 632px;
+}
+
+.taskList .contentTaskList ul li .CheckButton {
+  background: transparent;
+  color: var(--blue-100);
+  line-height: 0;
+
+  border: 0;
+
+  cursor: pointer;
+}
+
+.taskList .contentTaskList ul li .trashIcon {
+  background: transparent;
+  color: var(--gray-300);
+  line-height: 0;
+
+  border: 0;
+  border-radius: 2px;
+
+  cursor: pointer;
+}
+
+.taskList .contentTaskList ul li .trashIcon:hover {
+  color: var(--red-500);
+}
+
+.taskList .contentTaskList ul li .strikethroughText,
+.taskList .contentTaskList ul li .strikethroughText p {
+  color: var(--gray-300);
 }
