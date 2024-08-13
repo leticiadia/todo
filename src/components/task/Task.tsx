@@ -1,9 +1,16 @@
-import { CheckCircle, Circle, PlusCircle, Trash } from "@phosphor-icons/react";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { CheckCircle, Circle, Trash, PlusCircle } from "@phosphor-icons/react";
+
 import styles from "./Task.module.css";
 
-export function Task(): any {
-  const [tasks, setTasks] = useState([]);
+interface TaskProps {
+  id: number;
+  content: string;
+  completed: boolean;
+}
+
+export function Task() {
+  const [tasks, setTasks] = useState<TaskProps[]>([]);
   const [newTasksText, setNewTasksText] = useState("");
 
   function handleCreateNewTask(event: FormEvent) {
@@ -11,7 +18,10 @@ export function Task(): any {
     setTasks((currentTask) => {
       return [
         ...currentTask,
-        { id: crypto.randomUUID(), content: newTasksText, completed: false },
+        {
+          id: crypto.randomUUID(),
+          content: newTasksText,
+        },
       ];
     });
 
@@ -20,6 +30,17 @@ export function Task(): any {
 
   function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
     setNewTasksText(event.target.value);
+  }
+
+  function handleToggleCompletion(id: number) {
+    setTasks((currentTask) => {
+      return currentTask.map((task) => {
+        if (task.id === id) {
+          return { ...task, completed: !task.completed };
+        }
+        return task;
+      });
+    });
   }
 
   return (
@@ -57,13 +78,25 @@ export function Task(): any {
           <ul>
             {tasks.map((task) => {
               return (
-                <li key={task.id} className={styles.taskList}>
-                  <button className={styles.circleIcon}>
-                    <Circle size={20} weight="bold" />
-                    <CheckCircle size={20} weight="fill" />
+                <li key={task.id}>
+                  <button
+                    className={styles.CheckButton}
+                    onClick={() => handleToggleCompletion(task.id)}
+                  >
+                    {task.completed ? (
+                      <CheckCircle size={20} weight="fill" color="#5e60ce" />
+                    ) : (
+                      <Circle size={20} weight="bold" />
+                    )}
                   </button>
 
-                  <p>{task.content}</p>
+                  {task.completed ? (
+                    <strike className={styles.strikethroughText}>
+                      <p>{task.content}</p>
+                    </strike>
+                  ) : (
+                    <p>{task.content}</p>
+                  )}
 
                   <button className={styles.trashIcon} title="Deletar task">
                     <Trash size={18} />
