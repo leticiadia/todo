@@ -43,6 +43,12 @@ export function Task() {
     });
   }
 
+  function handleDeleteTask(id: number) {
+    setTasks((currentTask) => {
+      return currentTask.filter((task) => task.id !== id);
+    });
+  }
+
   return (
     <div>
       <form onSubmit={handleCreateNewTask} className={styles.taskForm}>
@@ -98,7 +104,11 @@ export function Task() {
                     <p>{task.content}</p>
                   )}
 
-                  <button className={styles.trashIcon} title="Deletar task">
+                  <button
+                    onClick={() => handleDeleteTask(task.id)}
+                    className={styles.trashIcon}
+                    title="Deletar task"
+                  >
                     <Trash size={18} />
                   </button>
                 </li>
