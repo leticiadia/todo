@@ -3,6 +3,8 @@ import { CheckCircle, Circle, Trash, PlusCircle } from "@phosphor-icons/react";
 
 import styles from "./Task.module.css";
 
+import ImageClipboard from "../../assets/clipboard.svg";
+
 interface TaskProps {
   id: number;
   content: string;
@@ -81,40 +83,53 @@ export function Task() {
         </div>
 
         <div className={styles.contentTaskList}>
-          <ul>
-            {tasks.map((task) => {
-              return (
-                <li key={task.id}>
-                  <button
-                    className={styles.CheckButton}
-                    onClick={() => handleToggleCompletion(task.id)}
-                  >
+          {tasks.length === 0 ? (
+            <div className={styles.notFoundTask}>
+              <img
+                src={ImageClipboard}
+                alt="Imagem de um ícone no formato de uma prancheta na cor cinza e com bordas arrendondadas"
+              />
+              <div className={styles.contentText}>
+                <p>Você ainda não tem tarefas cadastradas</p>
+                <p>Crie tarefas e organize seus itens a fazer</p>
+              </div>
+            </div>
+          ) : (
+            <ul>
+              {tasks.map((task) => {
+                return (
+                  <li key={task.id}>
+                    <button
+                      className={styles.CheckButton}
+                      onClick={() => handleToggleCompletion(task.id)}
+                    >
+                      {task.completed ? (
+                        <CheckCircle size={20} weight="fill" color="#5e60ce" />
+                      ) : (
+                        <Circle size={20} weight="bold" />
+                      )}
+                    </button>
+
                     {task.completed ? (
-                      <CheckCircle size={20} weight="fill" color="#5e60ce" />
+                      <strike className={styles.strikethroughText}>
+                        <p>{task.content}</p>
+                      </strike>
                     ) : (
-                      <Circle size={20} weight="bold" />
-                    )}
-                  </button>
-
-                  {task.completed ? (
-                    <strike className={styles.strikethroughText}>
                       <p>{task.content}</p>
-                    </strike>
-                  ) : (
-                    <p>{task.content}</p>
-                  )}
+                    )}
 
-                  <button
-                    onClick={() => handleDeleteTask(task.id)}
-                    className={styles.trashIcon}
-                    title="Deletar task"
-                  >
-                    <Trash size={18} />
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
+                    <button
+                      onClick={() => handleDeleteTask(task.id)}
+                      className={styles.trashIcon}
+                      title="Deletar task"
+                    >
+                      <Trash size={18} />
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
         </div>
       </div>
     </div>
