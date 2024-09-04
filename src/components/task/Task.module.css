@@ -45,12 +45,10 @@
 
 .taskList .headerTaskList {
   display: flex;
-  align-item: center;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: space-between;
 
   margin-top: 4rem;
-
-  padding: 0 5rem;
 }
 
 .taskList .headerTaskList .createdTask,
