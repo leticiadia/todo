@@ -73,7 +73,7 @@ export function Task() {
         <div className={styles.headerTaskList}>
           <div className={styles.createdTask}>
             <p>Tarefas criadas</p>
-            <span>0</span>
+            <span>{tasks.length}</span>
           </div>
 
           <div className={styles.doneTask}>
