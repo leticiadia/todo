@@ -15,6 +15,8 @@ export function Task() {
   const [tasks, setTasks] = useState<TaskProps[]>([]);
   const [newTasksText, setNewTasksText] = useState("");
 
+  const completedTask = tasks.filter((task) => task.completed).length;
+
   function handleCreateNewTask(event: FormEvent) {
     event.preventDefault();
     setTasks((currentTask) => {
@@ -78,7 +80,7 @@ export function Task() {
 
           <div className={styles.doneTask}>
             <p>Concluídas</p>
-            <span>0</span>
+            <span>{completedTask}</span>
           </div>
         </div>
 
