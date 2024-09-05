@@ -1,9 +1,10 @@
-import { ChangeEvent, FormEvent, useState } from "react";
-import { CheckCircle, Circle, Trash, PlusCircle } from "@phosphor-icons/react";
+import { useState } from "react";
+import { CheckCircle, Circle, Trash } from "@phosphor-icons/react";
 
 import styles from "./Task.module.css";
 
 import ImageClipboard from "../../assets/clipboard.svg";
+import { NewTodoForm } from "./NewTodoForm";
 
 interface TaskProps {
   id: number;
@@ -13,27 +14,18 @@ interface TaskProps {
 
 export function Task() {
   const [tasks, setTasks] = useState<TaskProps[]>([]);
-  const [newTasksText, setNewTasksText] = useState("");
-
   const completedTask = tasks.filter((task) => task.completed).length;
 
-  function handleCreateNewTask(event: FormEvent) {
-    event.preventDefault();
+  function handleAddTodo(content: string) {
     setTasks((currentTask) => {
       return [
         ...currentTask,
         {
           id: crypto.randomUUID(),
-          content: newTasksText,
+          content,
         },
       ];
     });
-
-    setNewTasksText("");
-  }
-
-  function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
-    setNewTasksText(event.target.value);
   }
 
   function handleToggleCompletion(id: number) {
@@ -55,22 +47,7 @@ export function Task() {
 
   return (
     <div>
-      <form onSubmit={handleCreateNewTask} className={styles.taskForm}>
-        <input
-          type="text"
-          value={newTasksText}
-          onChange={handleNewTaskChange}
-          placeholder="Adicione uma nova tarefa"
-        />
-
-        <footer>
-          <button type="submit">
-            Criar
-            <PlusCircle size={18} />
-          </button>
-        </footer>
-      </form>
-
+      <NewTodoForm onAddTask={handleAddTodo} />
       <div className={styles.taskList}>
         <div className={styles.headerTaskList}>
           <div className={styles.createdTask}>
