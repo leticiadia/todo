@@ -1,0 +1,50 @@
+li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+
+  width: 736px;
+  height: 72px;
+  padding: 1rem;
+  margin: 0 auto;
+
+  background-color: var(--gray-400);
+  border-radius: 0.5rem;
+
+  margin-bottom: 0.75rem;
+}
+
+li p {
+  color: var(--white-color);
+  width: 632px;
+}
+
+li .CheckButton {
+  background: transparent;
+  color: var(--blue-100);
+  line-height: 0;
+
+  border: 0;
+
+  cursor: pointer;
+}
+
+li .trashIcon {
+  background: transparent;
+  color: var(--gray-300);
+  line-height: 0;
+
+  border: 0;
+  border-radius: 2px;
+
+  cursor: pointer;
+}
+
+li .trashIcon:hover {
+  color: var(--red-500);
+}
+
+li .strikethroughText,
+li .strikethroughText p {
+  color: var(--gray-300);
+}
