@@ -6,7 +6,7 @@ interface TaskItemProps {
   id: string;
   content: string;
   completed: boolean;
-  handleToggleCompletion: (id: string) => void;
+  handleToggleDone: (id: string) => void;
   handleDeleteTask: (id: string) => void;
 }
 
@@ -14,14 +14,14 @@ export function TaskItem({
   completed,
   content,
   id,
-  handleToggleCompletion,
+  handleToggleDone,
   handleDeleteTask,
 }: TaskItemProps) {
   return (
     <li>
       <button
         className={styles.CheckButton}
-        onClick={() => handleToggleCompletion(id)}
+        onClick={() => handleToggleDone(id)}
       >
         {completed ? (
           <CheckCircle size={20} weight="fill" color="#5e60ce" />

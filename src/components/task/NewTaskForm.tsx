@@ -1,13 +1,13 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { PlusCircle } from "@phosphor-icons/react";
 
-import styles from "./NewTodoForm.module.css";
+import styles from "./NewTaskForm.module.css";
 
 interface NewTodoFormProps {
   onAddTask: (newTaskText: string) => void;
 }
 
-export function NewTodoForm({ onAddTask }: NewTodoFormProps) {
+export function NewTakForm({ onAddTask }: NewTodoFormProps) {
   const [newTaskText, setNewTaskText] = useState("");
 
   function handleCreateNewTask(event: FormEvent) {

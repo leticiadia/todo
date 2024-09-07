@@ -8,13 +8,13 @@ import styles from "./TaskList.module.css";
 
 interface TaskListProps {
   tasks: TaskProps[];
-  handleToggleCompletion: (id: string) => void;
+  handleToggleDone: (id: string) => void;
   handleDeleteTask: (id: string) => void;
 }
 
 export function TaskList({
   tasks,
-  handleToggleCompletion,
+  handleToggleDone,
   handleDeleteTask,
 }: TaskListProps) {
   const completedTask = tasks.filter((task) => task.completed).length;
@@ -52,7 +52,7 @@ export function TaskList({
                 <TaskItem
                   {...task}
                   key={task.id}
-                  handleToggleCompletion={handleToggleCompletion}
+                  handleToggleDone={handleToggleDone}
                   handleDeleteTask={handleDeleteTask}
                 />
               );

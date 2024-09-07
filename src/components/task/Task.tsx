@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { NewTodoForm } from "./NewTodoForm";
+import { NewTakForm } from "./NewTaskForm";
 import { TaskList } from "./TaskList";
 
 export interface TaskProps {
@@ -25,7 +25,7 @@ export function Task() {
     });
   }
 
-  function handleToggleCompletion(id: string) {
+  function handleToggleDone(id: string) {
     setTasks((currentTask) => {
       return currentTask.map((task) => {
         if (task.id === id) {
@@ -44,10 +44,10 @@ export function Task() {
 
   return (
     <div>
-      <NewTodoForm onAddTask={handleAddTask} />
+      <NewTakForm onAddTask={handleAddTask} />
       <TaskList
         tasks={tasks}
-        handleToggleCompletion={handleToggleCompletion}
+        handleToggleDone={handleToggleDone}
         handleDeleteTask={handleDeleteTask}
       />
     </div>
