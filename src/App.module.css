@@ -2,9 +2,16 @@
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
+  justify-content: center;
 
   max-width: 44rem;
   margin: 0 auto;
 
   padding: 0 1rem;
+}
+
+@media screen and (max-width: 800px) {
+  html {
+    font-size: 87.5%;
+  }
 }
