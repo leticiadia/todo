@@ -53,4 +53,9 @@ li .strikethroughText p {
   li {
     width: 320px;
   }
+
+  li p {
+    color: var(--white-color);
+    width: 230px;
+  }
 }
